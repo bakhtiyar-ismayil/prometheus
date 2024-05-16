@@ -1,0 +1,15 @@
+---
+- name: Node_exporter agent
+  hosts: all
+  become: yes
+  ignore_errors: yes
+  tasks:
+    - name: Copy Node_exporter
+      copy:
+        src: /root/node_exporter-1.8.0.linux-amd64.tar.gz
+        dest: /tmp/
+        #remote_src: yes
+
+    - name: Install Node_expoter 
+      script: /root/node_exporter.sh
+
