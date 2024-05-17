@@ -1,5 +1,4 @@
-tar -zxvf /tmp/node_exporter-1.8.0.linux-amd64.tar.gz 
-
+chmod 755 /tmp/node_exporter-1.8.0.linux-amd64/node_exporter
 
 mv /tmp/node_exporter-1.8.0.linux-amd64/node_exporter /usr/local/bin/
 
