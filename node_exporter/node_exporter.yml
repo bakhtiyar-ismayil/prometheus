@@ -6,11 +6,11 @@
   tasks:
     - name: Copy Node_exporter
       copy:
-        src: /root/node_exporter-1.8.0.linux-amd64
+        src: node_exporter-1.8.0.linux-amd64
         dest: /tmp/
 
     - name: Install Node_expoter 
-      script: /root/node_exporter.sh
+      script: node_exporter.sh
 
     - name: node_exporter status
       ansible.builtin.systemd:
@@ -24,7 +24,7 @@
 
     - name: Record hostname if node_exporter is running
       ansible.builtin.lineinfile:
-        path: /root/node_exporter_installed
+        path: node_exporter_installed
         line: "{{ ansible_default_ipv4.address }}"
         create: yes
       delegate_to: localhost
