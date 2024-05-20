@@ -6,3 +6,5 @@ groups:
         expr: rate(node_network_receive_bytes_total{job="nodes"}[2m])
       - record: node_network_receive_bytes_rate_avg
         expr: avg by(instance) (node_network_receive_bytes_rate)
+      - record: node_filesystem_free_percent
+        expr: 100 * node_filesystem_free_bytes{job="nodes"} / node_filesystem_size_bytes{job="nodes"}
