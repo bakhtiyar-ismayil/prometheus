@@ -1,0 +1,14 @@
+{{template "head" .}}
+{{template "prom_content_head" .}}
+<h1>Node Stats</h1>
+<h3>Memory</h3>
+<strong>Memory utilization:</strong> {{template "prom_query_drilldown" (args
+"100- (node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes*100)" "%") }}
+<br/>
+<strong>Memory Size:</strong> {{template "prom_query_drilldown" (args
+"node_memory_MemTotal_bytes/1000000" "Mb") }}
+<h3>CPU</h3>
+<strong>CPU Count:</strong> {{template "prom_query_drilldown" (args
+"count(node_cpu_seconds_total{mode='idle'})") }}
+{{template "prom_content_tail" .}}
+{{template "tail"}}

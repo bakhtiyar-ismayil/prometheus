@@ -1,0 +1,8 @@
+groups:
+  - name: node
+    interval: 15s
+    rules:
+      - record: node_network_receive_bytes_rate
+        expr: rate(node_network_receive_bytes_total{job="nodes"}[2m])
+      - record: node_network_receive_bytes_rate_avg
+        expr: avg by(instance) (node_network_receive_bytes_rate)
