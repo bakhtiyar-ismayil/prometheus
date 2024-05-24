@@ -8,3 +8,17 @@ groups:
         expr: avg by(instance) (node_network_receive_bytes_rate)
       - record: node_filesystem_free_percent
         expr: 100 * node_filesystem_free_bytes{job="nodes"} / node_filesystem_size_bytes{job="nodes"}
+
+  - name: node
+    rules:
+    - alert: LowDiskSpace
+      expr: 100 * node_filesystem_free_bytes{job="nodes"} / node_filesystem_size_bytes{job="nodes"} < 10
+      labels:
+         severity: warning
+         environment: prod
+
+    - alert: NodeDown
+        expr: up{job="nodes"} == 0
+        for: 10s
+        labels:
+          severity: critical

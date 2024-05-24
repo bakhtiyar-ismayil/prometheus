@@ -1,0 +1,30 @@
+cat <<EOF | curl --data-binary @- http://localhost:9091/metrics/job/video_processing/instance/mp4_node1
+# TYPE processing_time_seconds gauge
+processing_time_seconds{quality="hd"} 120
+# TYPE processed_videos_total gauge
+processed_videos_total{quality="hd"} 10
+# TYPE processed_bytes_total gauge
+processed_bytes_total{quality="hd"} 4400
+EOF
+
+
+
+cat <<EOF | curl --data-binary @- http://localhost:9091/metrics/job/video_processing/instance/mov_node1
+# TYPE processing_time_seconds gauge
+processing_time_seconds{quality="hd"} 400
+# TYPE processed_videos_total gauge
+processed_videos_total{quality="hd"} 250
+# TYPE processed_bytes_total gauge
+processed_bytes_total{quality="hd"} 96000
+EOF
+
+
+cat <<EOF | curl -X PUT --data-binary @- http://localhost:9091/metrics/job/video_processing/instance/mp4_node1
+# TYPE processing_time_seconds gauge
+processing_time_seconds{quality="hd"} 666
+EOF
+
+
+curl -X DELETE http://localhost:9091/metrics/job/video_processing/instance/mp4_node1
+
+
