@@ -22,3 +22,12 @@ groups:
         for: 10s
         labels:
           severity: critical
+
+    - alert: NodeDown2
+        expr: up{job="nodes"} == 0
+        for: 50s
+        labels:
+          severity: critical
+        annotations:
+          message: "node {{.Labels.instance}} is down"
+

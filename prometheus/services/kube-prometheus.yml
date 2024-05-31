@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: prometehus
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2024-05-31T05:27:10Z"
+  labels:
+    app: kube-prometheus-stack-prometheus
+    app.kubernetes.io/instance: prometehus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: kube-prometheus-stack
+    app.kubernetes.io/version: 59.0.0
+    chart: kube-prometheus-stack-59.0.0
+    heritage: Helm
+    release: prometehus
+    self-monitor: "true"
+  name: prometehus-kube-prometheus-prometheus
+  namespace: default
+  resourceVersion: "2515"
+  uid: c85206d4-17d8-4061-90a8-be7874ca8bcf
+spec:
+  clusterIP: 10.43.59.193
+  clusterIPs:
+  - 10.43.59.193
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http-web
+    nodePort: 30111
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  - appProtocol: http
+    name: reloader-web
+    nodePort: 31656
+    port: 8080
+    protocol: TCP
+    targetPort: reloader-web
+  selector:
+    app.kubernetes.io/name: prometheus
+    operator.prometheus.io/name: prometehus-kube-prometheus-prometheus
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
