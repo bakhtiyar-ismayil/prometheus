@@ -167,4 +167,3 @@ Prometheus integrates seamlessly with Grafana for visualizing metrics. To set it
 - [Prometheus Documentation](https://prometheus.io/docs/)
 - [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/)
 ```
-
